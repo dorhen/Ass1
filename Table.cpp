@@ -6,17 +6,18 @@
         return capacity;
     }
     void addCustomer(Customer* customer){
-        customersList.push_back(customer);
+        customersList.push_back(*customer);
     }
     void removeCustomer(int id){
         for(size_t i=0 ; i< customerList.size() ; i++){
             if((*customerList[i]).getId() == id)
                 customerList.erase(i);
         }
+    }
     Customer* getCustomer(int id){
         for(size_t i=0 ; i< customerList.size() ; i++){
             if((*customerList[i]).getId() == id)
-                return *customerList[i];
+                return &customerList[i];
         }
     std::vector<Customer*>& getCustomers(){
         vector<Customer*>& ans= customersList;
