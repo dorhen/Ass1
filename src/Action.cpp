@@ -71,10 +71,18 @@ void Order::act(Restaurant &restaurant) {
 MoveCustomer::MoveCustomer(int src, int dst, int customerId) : srcTable(src), dstTable(dst), id(customerId){}
 //Methods
 void MoveCustomer::act(Restaurant &restaurant) {
-    Table *t = restaurant.getTable(this->tableId);
-    if(!t || !(t->isOpen()) || t->getCapacity() == t->getCurrentSize() || !t->getCustomer(this->id))
+    Table *t1 = restaurant.getTable(this->srcTable);
+    Table *t2 = restaurant.getTable(this->dstTable);
+    if(!t1 || !(t1->isOpen()) || !t2 || !(t2->isOpen()) || t2->getCapacity() == t2->getCurrentSize() || !t1->getCustomer(this->id))
         this->error("Cannot move customer");
     else{
-
+        t2.addCustomer(t1.getCustomer(this->id));
+        std::vector<OrderPair> toMove = t->removeOrders(this->id);
+        for(size_t i=0; i < toMove.size(); i++)
+            t2->addOrder(toMove[i]);
+        t1.removeCustomer(this->id);
+    }
+        
+            
     }
 }
