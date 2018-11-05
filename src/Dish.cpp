@@ -1,18 +1,17 @@
 
 #include "../include/Dish.h"
-#include <iostream>
 
 Dish(int d_id, std::string d_name, int d_price, DishType d_type) : id(d_id), price(d_price), type(d_type), name(d_name) {}
 
-int getId() const{
+int Dish::getId() const{
     return id;
 }
-std::string getName() const{
+std::string Dish::getName() const{
     return name;
 }
-int getPrice() const{
+int Dish::getPrice() const{
     return price;
 }
-DishType getType() const{
+DishType Dish::getType() const{
     return type;
 }
