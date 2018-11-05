@@ -24,6 +24,7 @@ public:
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:
+	std::vector<int> Strategy;
 };
 
 
@@ -33,6 +34,8 @@ public:
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:
+	std::vector<int> Strategy;
+	bool ordered;
 };
 
 
