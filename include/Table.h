@@ -23,6 +23,7 @@ public:
     bool isOpen();
     int getCurrentSize() const;
     std::vector<OrderPair> removeOrders(int id);
+    void addOrder(OrderPair P);
 private:
     int capacity;
     bool open;
