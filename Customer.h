@@ -57,7 +57,7 @@ public:
     std::string toString() const;
 private:
 	std::vector<int> Strategy;
-	std::vector<int> Drinks;
+	std::vector<Dish> Drinks;
 	int current;
 };
 
