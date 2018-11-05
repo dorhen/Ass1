@@ -1,11 +1,11 @@
-#include "Restaurant.h"
+#include "../include/Restaurant.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 using namespace std;
 
 
-void Restaurant(const string &configFilePath): open(true){
+Restaurant :: Restaurant(const string &configFilePath): open(true){
     ifstream inFile;
     inFile.open(configFilePath);
     if(!inFile.is_open()){
@@ -38,14 +38,14 @@ void Restaurant(const string &configFilePath): open(true){
                         stringstream num(numWord);
                         int tSize = 0;
                         num >> tSize;
-                        tables.push_back(new Table(tSize));
+                        this.tables.push_back(new Table(tSize));
                         break;
                     }
                     else{
                         stringstream num(line);
                         int tSize = 0;
                         num >> tSize;
-                        tables.push_back(new Table(tSIze));
+                        this.tables.push_back(new Table(tSize));
                         continue;
                     }
                 }
@@ -58,7 +58,7 @@ void Restaurant(const string &configFilePath): open(true){
                 stringstream num(numWord);
                 int price = 0;
                 num >> price;
-                menu.push_back(new Dish(dishID,name,price,convert(dishType)));
+                menu.push_back(Dish(dishID,name,price,convert(dishType)));
                 dishID++;
         }
     }
@@ -69,20 +69,21 @@ void start(){
 
 }
 
-int getNumOfTables() const{
+int Restaurant:: getNumOfTables() const{
     return tables.size();
 }
 
-vector<Dish>& getMenu(){
+vector<Dish>& Restaurant :: getMenu(){
     vector<Dish> &dishRef = menu;
     return dishRef;
 }
 
-Table* getTable(int ind){
+Table* Restaurant :: getTable(int ind){
+    if(ind>=tables.size())return nullptr;
     return tables[ind];
 }
 
-DishType convert(string str){
+DishType Restaurant :: convert(string str){
     if(str == "VEG") return VEG;
     else if(str == "SPC") return SPC;
     else if(str == "BVG") return BVG;
