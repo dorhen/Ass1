@@ -43,10 +43,9 @@
 
 
 
-	CheapCustomer :: CheapCustomer(std::string name, int id) : Customer(name, id), Strategy(-1){}
+	CheapCustomer :: CheapCustomer(std::string name, int id) : Customer(name, id), Strategy(-1), ordered(false){}
 	std::vector<int> CheapCustomer :: order(const std::vector<Dish> &menu){
-		if(Strategy[0] == -1){
-		
+		if((!ordered) && (menu.size() > 0)){
 			int cheapest = -1;
 			for(size_t i=0 ; i < menu.size() ; i++){
 				if((menu[i].getPrice() < cheapest) || (cheapest == -1)){
@@ -54,28 +53,90 @@
 					Strategy[0] = i;
 				}
 			}
-			
-				
+			ordered=true;
+			return Strategy;
+		}
+		Strategy.clear();
+		return Strategy;
+	}			
 	std::string CheapCustomer :: toString() const;
 
 
 
-class SpicyCustomer : public Customer {
-public:
-	SpicyCustomer(std::string name, int id) : Customer(name, id) {}
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
-private:
-};
+
+	SpicyCustomer :: SpicyCustomer(std::string name, int id) : Customer(name, id), Strategy(-1), ordered(false) {}
+    std::vector<int> SpicyCustomer :: order(const std::vector<Dish> &menu){
+	    if((ordered) && (menu[Strategy[0]].getType() == BVG))
+		    return Strategy;
+	    else if(ordered){
+		   	 int cheapest=-1;
+		   	 for(size_t i=0 ; i < menu.size() ; i++){
+				 if(menu[i].getType() == BVG){
+					if((menu[i].getPrice() < cheapest) || (cheapest == -1)){
+						cheapest = menu[i].getPrice();
+						Strategy[0] = i;
+					}
+				}
+			}
+		if(cheapest == -1){
+			Strategy.clear();
+			retrun Strategy;
+		}
+	    }
+	    int exp=0;
+	    for(size_t i=0;i<menu.size();i++){
+		    if((menu[i].getType==SPC) && (menu[i].getPrice()>exp)){
+			    exp = menu[i].getPrice();
+			    Strategy[0]=i;
+		    }
+	    }
+	    if(exp == 0)
+		    Strategy.clear();
+	    ordered == true;
+	    return Strategy;
+    }	    
+    std::string SpicyCustomer :: toString() const;
 
 
-class AlchoholicCustomer : public Customer {
-public:
-	AlchoholicCustomer(std::string name, int id) : Customer(name, id) {}
-    std::vector<int> order(const std::vector<Dish> &menu);
-    std::string toString() const;
-private:
-};
+
+
+	AlchoholicCustomer :: AlchoholicCustomer(std::string name, int id) : Customer(name, id), current=0 {}
+	AlchoholicCustomer :: Sort(){
+		std::vector<Dish> Sorted;
+		int i=1;
+		Sorted.resize(Drinks.size());
+		Sorted[0]=Drinks[0];
+		while(i<Drinks.size()){
+			int j=i-1;
+			while(Drinks[i].getPrice()<Sorted[j].getPrice()){
+				Sorted[j+1]=Sorted[j];
+				j--;
+			}
+			Sorted[j+1]=Drinks[i];
+			i++;
+		}
+		Drinks = Sorted; //not sure
+	}
+    std::vector<int> AlchoholicCustomer :: order(const std::vector<Dish> &menu){
+	    if(current>0){
+		    if(current<Drinks.size()){
+			    Strategy[0]=Drinks[current].getId();
+			    current++;
+		    }
+		    else Strategy.clear();
+		    retrurn Strategy;
+	    }
+	    for(size_t i=0 ; i < menu.size() ; i++){
+		    if(menu[i].getType()==ALC)
+			    Drinks.push_back(menu[i]);
+	    }
+	    Sort();
+	    Strategy.push_back(Drinks[current].getId());
+	    current++;
+	    return Strategy;
+    }
+	    
+    std::string AlchoholicCustomer :: toString() const;
 
 
 #endif
