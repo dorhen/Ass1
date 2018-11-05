@@ -9,15 +9,15 @@
         customersList.push_back(*customer);
     }
     void removeCustomer(int id){
-        for(size_t i=0 ; i< customerList.size() ; i++){
-            if((*customerList[i]).getId() == id)
-                customerList.erase(i);
+        for(size_t i=0 ; i< customersList.size() ; i++){
+            if((*customersList[i]).getId() == id)
+                customersList.erase(i);
         }
     }
     Customer* getCustomer(int id){
-        for(size_t i=0 ; i< customerList.size() ; i++){
-            if((*customerList[i]).getId() == id)
-                return &customerList[i];
+        for(size_t i=0 ; i< customersList.size() ; i++){
+            if((*customersList[i]).getId() == id)
+                return customersList[i];
         }
     std::vector<Customer*>& getCustomers(){
         vector<Customer*>& ans= customersList;
@@ -30,7 +30,7 @@
     void order(const std::vector<Dish> &menu){
         std :: vector<int> v;
         std :: string s;
-        for(size_t i=0 ; i< customerList.size() ; i++){
+        for(size_t i=0 ; i< customersList.size() ; i++){
             v = (*customersList[i]).order(menu);
             for(size_t j=0 ; j< v.size() ; j++){
                 s += customersList[i].getName() + " ordered" + menu[v[j]].getName() + "/n";
