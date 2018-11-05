@@ -5,7 +5,7 @@
 using namespace std;
 
 
-Restaurant(const string &configFilePath): open(true){
+Restaurant::Restaurant(const string &configFilePath): open(true){
     ifstream inFile;
     inFile.open(configFilePath);
     if(!inFile.is_open()){
@@ -47,7 +47,7 @@ Restaurant(const string &configFilePath): open(true){
                         num >> tSize;
                         this.tables.push_back(new Table(tSize));
                         continue;
-                        }
+                    }
                 }
                 break;
             case 3:
@@ -58,7 +58,7 @@ Restaurant(const string &configFilePath): open(true){
                 stringstream num(numWord);
                 int price = 0;
                 num >> price;
-                this.menu.push_back(new Dish(dishID,name,price,convert(dishType)));
+                menu.push_back(Dish(dishID,name,price,convert(dishType)));
                 dishID++;
         }
     }
@@ -69,21 +69,21 @@ void start(){
 
 }
 
-int getNumOfTables() const{
+int Restaurant::getNumOfTables() const{
     return tables.size();
 }
 
-vector<Dish>& getMenu(){
+vector<Dish>& Restaurant::getMenu(){
     vector<Dish> &dishRef = menu;
     return dishRef;
 }
 
-Table* getTable(int ind){
-    if(ind>=this.tables.size())return nullptr;
+Table* Restaurant::getTable(int ind){
+    if(ind>=tables.size())return nullptr;
     return tables[ind];
 }
 
-DishType convert(string str){
+DishType Restaurant::convert(string str){
     if(str == "VEG") return VEG;
     else if(str == "SPC") return SPC;
     else if(str == "BVG") return BVG;
