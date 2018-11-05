@@ -14,51 +14,52 @@ public:
     int getId() const;
 private:
     const std::string name;
-    const int id
+    const int id;
 };
 
 
 class VegetarianCustomer : public Customer {
 public:
-	VegetarianCustomer(std::string name, int id);
+    VegetarianCustomer(std::string name, int id);
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:
-	std::vector<int> Strategy;
+    std::vector<int> Strategy;
 };
 
 
 class CheapCustomer : public Customer {
 public:
-	CheapCustomer(std::string name, int id);
+    CheapCustomer(std::string name, int id);
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:
-	std::vector<int> Strategy;
-	bool ordered;
+    std::vector<int> Strategy;
+    bool ordered;
 };
 
 
 class SpicyCustomer : public Customer {
 public:
-	SpicyCustomer(std::string name, int id);
+    SpicyCustomer(std::string name, int id);
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
 private:
-	std::vector<int> Strategy;
-	bool ordered;
+    std::vector<int> Strategy;
+    bool ordered;
 };
 
 
 class AlchoholicCustomer : public Customer {
 public:
-	AlchoholicCustomer(std::string name, int id)
+    AlchoholicCustomer(std::string name, int id);
     std::vector<int> order(const std::vector<Dish> &menu);
     std::string toString() const;
+    void Sort();
 private:
-	std::vector<int> Strategy;
-	std::vector<Dish> Drinks;
-	int current;
+    std::vector<int> Strategy;
+    std::vector<Dish> Drinks;
+    int current;
 };
 
 
