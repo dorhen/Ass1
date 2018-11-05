@@ -59,7 +59,8 @@
 		Strategy.clear();
 		return Strategy;
 	}			
-	std::string CheapCustomer :: toString() const;
+	std::string CheapCustomer :: toString() const{
+		return getName() + getId() + "CheapCustomer"; 
 
 
 
