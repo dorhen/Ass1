@@ -3,28 +3,28 @@
 #include <vector>
 
 
-Table(int t_capacity): capacity(t_capacity), open(false) {}
+Table:Table(int t_capacity): capacity(t_capacity), open(false) {}
 
 int getCapacity() const {
     return capacity;
 }
 
-void addCustomer(Customer *customer) {
+void Table:addCustomer(Customer *customer) {
     customersList.push_back(*customer);
 }
 
-void removeCustomer(int id) {
+void Table:removeCustomer(int id) {
     for (size_t i = 0; i < customersList.size(); i++) {
         if ((*customersList[i]).getId() == id)
             customersList.erase(i);
     }
 }
 
-int getCurrentSize() const {
+int Table:getCurrentSize() const {
     return customersList.size();
 }
 
-Customer* getCustomer(int id) {
+Customer* Table:getCustomer(int id) {
     Customer* ans = nullptr;
     for (size_t i = 0; i < customersList.size(); i++) {
         if ((*customersList[i]).getId() == id)
@@ -33,17 +33,17 @@ Customer* getCustomer(int id) {
     return ans;
 }
 
-std::vector<Customer *>& getCustomers() {
+std::vector<Customer *>& Table:getCustomers() {
     std::vector < Customer * > &ans = customersList;
     return ans;
 }
 
-std::vector<OrderPair>& getOrders() {
+std::vector<OrderPair>& Table:getOrders() {
     std::vector <OrderPair> &ans = orderList;
     return ans;
 }
 
-void order(const std::vector<Dish> &menu) {
+void Table:order(const std::vector<Dish> &menu) {
     std::vector<int> v;
     std::string s;
     for (size_t i = 0; i < customersList.size(); i++) {
@@ -56,15 +56,15 @@ void order(const std::vector<Dish> &menu) {
     std::cout << s << std::endl;
 }
 
-void openTable() {
+void Table:openTable() {
     open = true;
 }
 
-void closeTable() {
+void Table:closeTable() {
     open = false;
 }
 
-int getBill() {
+int Table:getBill() {
     int bill = 0;
     for (size_t i = 0; i < orderList.size(); i++) {
         bill += orderList[i].second.getPrice();
@@ -72,12 +72,12 @@ int getBill() {
     return bill;
 }
 
-bool isOpen() {
+bool Table:isOpen() {
     return open;
 }
 
-std::vector<OrderPair> removeOrders(int id){
+std::vector<OrderPair> Table:removeOrders(int id){
     std::vector<OrderPair> idOrders;
-
+    for(size_t i = 0; i< 
 }
 
