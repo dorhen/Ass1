@@ -10,15 +10,15 @@ int getCapacity() const {
 }
 
 void Table:addCustomer(Customer *customer) {
-    customersList.push_back(*customer);
+    customersList.push_back(customer);
 }
 
 void Table:removeCustomer(int id) {
     for (size_t i = 0; i < customersList.size(); i++) {
         if ((*customersList[i]).getId() == id)
-            customersList.erase(i);
+            customersList.erase(customersList.begin()+i);
     }
-}
+}-
 
 int Table:getCurrentSize() const {
     return customersList.size();
@@ -78,6 +78,12 @@ bool Table:isOpen() {
 
 std::vector<OrderPair> Table:removeOrders(int id){
     std::vector<OrderPair> idOrders;
-    for(size_t i = 0; i< 
+    for(size_t i = 0; i< orderList.size(); i++){
+        if(orderList[i].first == id){
+            idOrders.push_back(Orderpair(id,orderList[i].second));
+            orderList.erase(orderList.begin()+i);
+            i--;
+        }
+    }
 }
 
