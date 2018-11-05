@@ -1,12 +1,12 @@
 #include "../include/Customer.h"
 
-Customer(std :: string c_name, int c_id) : name(c_name), id(c_id){}
+Customer :: Customer(std :: string c_name, int c_id) : name(c_name), id(c_id){}
 
 
-std::string getName() const{
+std::string Customer :: getName() const{
     return name;
 }
-int getId() const{
+int Customer :: getId() const{
     return id;
 }
 
@@ -20,7 +20,7 @@ std::vector<int> VegetarianCustomer :: order(const std::vector<Dish> &menu){
         for(size_t i=0 ; i < menu.size() ; i++){
             if ((Strategy[0]==-1) && (menu[i].getType() == VEG))
                 Strategy[0] = i;
-            if ((menu[i].getType == BVG) && (menu[i].getPrice() > expBVG)){
+            if ((menu[i].getType() == BVG) && (menu[i].getPrice() > expBVG)){
                 Strategy[1] = i;
                 expBVG = menu[i].getPrice();
             }
