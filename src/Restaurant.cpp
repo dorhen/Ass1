@@ -38,14 +38,14 @@ Restaurant::Restaurant(const string &configFilePath): open(true){
                         stringstream num(numWord);
                         int tSize = 0;
                         num >> tSize;
-                        this.tables.push_back(new Table(tSize));
+                        this->tables.push_back(new Table(tSize));
                         break;
                     }
                     else{
                         stringstream num(line);
                         int tSize = 0;
                         num >> tSize;
-                        this.tables.push_back(new Table(tSize));
+                        this->tables.push_back(new Table(tSize));
                         continue;
                     }
                 }
@@ -66,6 +66,17 @@ Restaurant::Restaurant(const string &configFilePath): open(true){
 }
 
 void start(){
+    std::cout << "Restaurant is now open!" << std::endl;
+    std::string command;
+    std::string action;
+    cin >> command;
+    action = command.substr(command.find_first_of(' '),0);
+    while (command !="closeall"){
+        switch(action) {
+            case "Open Table" :
+
+        }
+    }
 
 }
 
