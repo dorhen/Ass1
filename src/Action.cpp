@@ -75,7 +75,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
     Table *t2 = restaurant.getTable(this->dstTable);
     if(!t1 || !(t1->isOpen()) || !t2 || !(t2->isOpen()) || t2->getCapacity() == t2->getCurrentSize() || !t1->getCustomer(this->id))
         this->error("Cannot move customer");
-    else{
+    else{id
         t2.addCustomer(t1.getCustomer(this->id));
         std::vector<OrderPair> toMove = t->removeOrders(this->id);
         for(size_t i=0; i < toMove.size(); i++)
@@ -85,4 +85,13 @@ void MoveCustomer::act(Restaurant &restaurant) {
 })
 
 //Constructor
-Close::Close (int id): 
+Close::Close (int id): tableId(id) {}
+void Close::act(Restaurant &restaurant){
+    Table *t = restaurant.getTable(this->tableId);
+    if (!t || !(t->isOpen()))
+        this->error("Table does not exist or is already open");
+    else{
+        std::cout << "Table " << this->tableId << "was closed. " << "Bill " << t->getBill() << "NIS" << endl;
+        t->close();
+    }
+}
