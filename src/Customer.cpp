@@ -86,7 +86,7 @@ std::vector<int> SpicyCustomer :: order(const std::vector<Dish> &menu){
     }
     if(exp == 0)
         Strategy.clear();
-    ordered == true;
+    ordered = true;
     return Strategy;
 }
 std::string SpicyCustomer :: toString() const;
