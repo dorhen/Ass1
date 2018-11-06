@@ -61,6 +61,9 @@ void Table:openTable() {
 }
 
 void Table:closeTable() {
+    orderList.clear;
+    customersList.clear;
+    
     open = false;
 }
 
@@ -85,5 +88,9 @@ std::vector<OrderPair> Table:removeOrders(int id){
             i--;
         }
     }
+}
+
+void addOrder(OrderPair p){
+    orderList.push_back(p);
 }
 
