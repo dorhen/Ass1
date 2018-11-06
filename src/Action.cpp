@@ -67,7 +67,7 @@ void Order::act(Restaurant &restaurant) {
 
 //MoveCustomer
 
-//Constructor
+//Constructort 
 MoveCustomer::MoveCustomer(int src, int dst, int customerId) : srcTable(src), dstTable(dst), id(customerId){}
 //Methods
 void MoveCustomer::act(Restaurant &restaurant) {
@@ -82,7 +82,7 @@ void MoveCustomer::act(Restaurant &restaurant) {
             t2->addOrder(toMove[i]);
         t1.removeCustomer(this->id);
     }
-        
-            
-    }
-}
+})
+
+//Constructor
+Close::Close (int id): 
