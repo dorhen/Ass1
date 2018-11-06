@@ -1,6 +1,6 @@
 #include "../include/Action.h"
 #include "../include/Table.h"
-#include <iostream>W
+#include <iostream>
 
 //BaseAction
 
